@@ -22,14 +22,13 @@ dag = DAG("Analyze",
         schedule_interval='0 8 * * *')
 
 script = 'hdfs://34.125.213.35:LE/Script/spark.py'
-spark_parameters = '--executor-memory 100G'
 # here we can use Airflow template to define the parameters used in the script
 # parameters = '--db {{ params.database_instance }}, --output_path {{ params.output_path }}' 
 
-submit_pyspark_job = SSHOperator(
+submit_pyspark_job = SparkSubmitOperator(
+	application=script,
     task_id='pyspark_submit',
-    ssh_conn_id='LE spark',
-    command='set -a; PYSPARK_PYTHON=python3; /usr/bin/spark-submit --deploy-mode cluster %s %s' % (spark_parameters, script),
+    conn_id='spark',
     dag=dag
 )
 #     submit_task
