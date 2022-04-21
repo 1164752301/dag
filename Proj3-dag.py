@@ -27,7 +27,6 @@ spark_parameters = '--executor-memory 100G'
 # parameters = '--db {{ params.database_instance }}, --output_path {{ params.output_path }}' 
 
 submit_pyspark_job = SSHOperator(
-	application=script,
     task_id='pyspark_submit',
     ssh_conn_id='LE spark',
     command='set -a; PYSPARK_PYTHON=python3; /usr/bin/spark-submit --deploy-mode cluster %s %s' % (spark_parameters, script),
