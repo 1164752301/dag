@@ -27,7 +27,7 @@ spark_parameters = '--executor-memory 100G'
 # parameters = '--db {{ params.database_instance }}, --output_path {{ params.output_path }}' 
 
 submit_pyspark_job = SparkSubmitOperator(
-	application='hdfs://localhost:LE/Script/spark.py'
+	application='hdfs://localhost:LE/Script/spark.py',
     task_id='pyspark_submit',
     conn_id='spark',
     # command='set -a; PYSPARK_PYTHON=python3; /usr/bin/spark-submit --deploy-mode cluster %s %s' % (spark_parameters, script),
