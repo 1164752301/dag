@@ -21,7 +21,7 @@ dag = DAG("Analyze",
         default_args=default_args,
         schedule_interval='0 8 * * *')
 
-script = 'hdfs://localhost:LE/Script/spark.py'
+script = 'hdfs://localhost:9000/LE/Script/spark.py'
 spark_parameters = '--executor-memory 100G'
 # here we can use Airflow template to define the parameters used in the script
 # parameters = '--db {{ params.database_instance }}, --output_path {{ params.output_path }}' 
