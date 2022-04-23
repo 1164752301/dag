@@ -30,7 +30,7 @@ submit_pyspark_job = SSHOperator(
 	# application='hdfs://34.125.213.35:LE/Script/spark.py',
     task_id='pyspark_submit',
     ssh_conn_id='LE spark',
-    command='echo "a"; spark-submit %s' % (script),
+    command='echo "a"; ~/.local/lib/python3.7/site-packages/pyspark/bin/spark-submit %s' % (script),
     dag=dag
 )
 #     submit_task
