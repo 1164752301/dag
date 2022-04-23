@@ -26,11 +26,11 @@ spark_parameters = '--executor-memory 100G'
 # here we can use Airflow template to define the parameters used in the script
 # parameters = '--db {{ params.database_instance }}, --output_path {{ params.output_path }}' 
 
-submit_pyspark_job = SparkSubmitOperator(
-	application='hdfs://34.125.213.35:LE/Script/spark.py',
+submit_pyspark_job = SSHOperator(
+	# application='hdfs://34.125.213.35:LE/Script/spark.py',
     task_id='pyspark_submit',
-    # conn_id='spark',
-    # command='set -a; PYSPARK_PYTHON=python3; /usr/bin/spark-submit --deploy-mode cluster %s %s' % (spark_parameters, script),
+    ssh_conn_id='LE spark',
+    command='set -a; PYSPARK_PYTHON=python3; /usr/bin/spark-submit --deploy-mode cluster %s %s' % (spark_parameters, script),
     dag=dag
 )
 #     submit_task
